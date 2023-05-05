@@ -88,8 +88,10 @@ public class Player : MonoBehaviour
         if (col.gameObject.GetComponent<NoseObstacle>())
         {
             health--;
+            Debug.Log("I need death");
             if (health == 0)
             {
+                
                 Dead().Forget();
                 
             }
@@ -113,6 +115,7 @@ public class Player : MonoBehaviour
         health = 1;
         CurrentScore = 0;
         cerealBox = 0;
+        
     }
 
     private void ClickCounter()
@@ -130,6 +133,7 @@ public class Player : MonoBehaviour
 
     private async UniTaskVoid Dead()
     {
+        GameManager.Instance.SummaryCerealsCount += cerealBox;
         await UniTask.Delay(150);
         gameObject.SetActive(false);
         FinishScore = Mathf.RoundToInt(CurrentScore);

@@ -11,6 +11,8 @@ public class FailPanel : MonoBehaviour
     private TextMeshProUGUI _finishScore;
     private Player _player;
     private TextMeshProUGUI _highScore;
+
+    private TextMeshProUGUI _SummaryCerealBoxes;
    // private GameManager _gameManager;
     private void Awake()
     {
@@ -18,6 +20,7 @@ public class FailPanel : MonoBehaviour
         _finishScore = GetComponentInChildren<CurrentScore>().GetComponent<TextMeshProUGUI>();
         _highScore = GetComponentInChildren<HighScore>().GetComponent<TextMeshProUGUI>();
         _player = FindObjectOfType<Player>(true);
+        _SummaryCerealBoxes = GetComponentInChildren<CerealScore>().GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -27,8 +30,9 @@ public class FailPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        _finishScore.text = _player.FinishScore.ToString();
-        _highScore.text = GameManager.Instance.HighScore.ToString(); //синглтон
+        _finishScore.text = "Current Score: " + _player.FinishScore.ToString();
+        _highScore.text = "High Score: " + GameManager.Instance.HighScore.ToString(); //синглтон
+        _SummaryCerealBoxes.text = "Current Cereal Count: " + (GameManager.Instance.SummaryCerealsCount + _player.cerealBox).ToString();
     }
 
     public void RestartGame()

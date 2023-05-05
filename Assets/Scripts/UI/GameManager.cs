@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     private SpawnPointForMfDoom _pointMfDoom;
     
     private const string SAVE_KEY = "high_score";
+    private const string Cereals_SAVE_KEY = "SummaryCereals";
+ 
     public int HighScore;
+    public int SummaryCerealsCount;
 
     private void Awake()
     {
@@ -98,14 +101,28 @@ public class GameManager : MonoBehaviour
 
     private void SaveData()
     {
+        SummaryCerealsCount += _player.cerealBox;
         PlayerPrefs.SetInt(SAVE_KEY, HighScore);
+        PlayerPrefs.SetInt(Cereals_SAVE_KEY, SummaryCerealsCount);
+      
     }
 
     private void LoadData()
     {
          HighScore = PlayerPrefs.GetInt(SAVE_KEY, 0);
+         SummaryCerealsCount += PlayerPrefs.GetInt(Cereals_SAVE_KEY, 0);
+         Debug.Log(HighScore);
+         Debug.Log(SummaryCerealsCount);
     }
 
+    /*
+     private void LoadCereals()
+     {
+     CerealsAllCount = 
+     }
+     */
+    
+    
     private void OnDestroy()
     {
         SaveData();
