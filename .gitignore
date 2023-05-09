@@ -60,6 +60,8 @@ crashlytics-build.properties
 Assets/Plugins/Editor/JetBrains*
 .idea/
 
+
+
 # ============ #
 # OS generated #
 # ============ #
@@ -78,3 +80,8 @@ ehthumbs.db
 Assets/Plugins/Editor/JetBrains
 JetBrains.meta
 
+
+# Firebase
+Assets/Firebase
+Assets/ExternalDependencyManager
+Assets/Plugins

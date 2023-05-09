@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "488258344631",
+    "project_id": "mfdoom-96789",
+    "storage_bucket": "mfdoom-96789.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488258344631:android:4a3fa943df040c5cc81f32",
+        "android_client_info": {
+          "package_name": "com.MfDoom.MfDoom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488258344631-6gj7vj4fn9a5i8k7s7k2n4m0utk6kus0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu6tpJrdF9Hv6UxlctbnhzHdZiHD1z-oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488258344631-6gj7vj4fn9a5i8k7s7k2n4m0utk6kus0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "488258344631-ses9vgabc8ok3u824rvd5pikeb02ljmd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.MfDoom.MfDoom"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

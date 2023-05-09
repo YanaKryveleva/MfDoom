@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyerForBoxes: {fileID: 0}
+  speed: 0.2
 --- !u!50 &2548950666246922684
 Rigidbody2D:
   serializedVersion: 4

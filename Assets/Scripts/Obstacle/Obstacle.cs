@@ -6,7 +6,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] private DestroyerForBoxes _destroyerForBoxes;
-    private float speed = 0.002f;
+    [SerializeField] private float speed = 0.2f;
     private void Update()
     { 
         transform.Translate(Vector2.left * speed);

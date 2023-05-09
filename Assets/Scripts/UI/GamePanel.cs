@@ -9,6 +9,8 @@ public class GamePanel : MonoBehaviour
     private TextMeshProUGUI _score;
     private TextMeshProUGUI _countCerealBoxes;
     private Player _player;
+   // private AudioSource _audioSource;
+    //[SerializeField] private AudioManagerWhileGame _audioManagerWhileGame;
     
 
     private void Awake()
@@ -16,10 +18,14 @@ public class GamePanel : MonoBehaviour
        _score = GetComponentInChildren<Score>().GetComponent<TextMeshProUGUI>();
       // _player = FindObjectOfType<Player>();
        _countCerealBoxes = GetComponentInChildren<CountCerealBoxes>().GetComponent<TextMeshProUGUI>();
+      // _audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Start()
     {
+       // _audioManagerWhileGame = FindObjectOfType<AudioManagerWhileGame>();
+      // _audioSource.Play();
         _player = FindObjectOfType<Player>();
         Debug.Log("Start from GamePanel");
         _player.ScoreCounting += ScoreCount;
@@ -29,12 +35,12 @@ public class GamePanel : MonoBehaviour
 
     private void ScoreCount(float obj)
     {
-        _score.text = (Mathf.RoundToInt(obj)).ToString(); //на геймпанель передает постоянно обновляющееся значение счета которое обновляется в классе Player в Update
+        _score.text = "Current score : " + ((Mathf.RoundToInt(obj)).ToString()); //на геймпанель передает постоянно обновляющееся значение счета которое обновляется в классе Player в Update
     }
     
     private void CountingCerealBoxxxs(int obj)
     {
-        _countCerealBoxes.text = obj.ToString();
+        _countCerealBoxes.text = " " + obj.ToString();
     }
     
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Firebase.Analytics;
 using TMPro;
 using UI;
 using Unity.VisualScripting;
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; //синглтон геймменеджера => в других классах не надо будет создавать ссылки на геймменеджера а мы сможем обратиться к нему просто так
 
     private UIController _uiController;
+    
     
     [SerializeField] private Level _level;
     
@@ -24,9 +26,15 @@ public class GameManager : MonoBehaviour
  
     public int HighScore;
     public int SummaryCerealsCount;
+    private InterstitialAdExample _interstitialAdExample;
+
+    public event Action MusicStarting;
+    public event Action QuietMusic;
+    public event Action RestartVolume;
 
     private void Awake()
     {
+        _interstitialAdExample = FindObjectOfType<InterstitialAdExample>();
         if (Instance == null) //инстантиэйт синглотона (инстиантиэйт геймменеджера)
         {
             Instance = this;
@@ -45,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         _uiController.ChangePanel(Panel.Start); //
         LoadData();
+        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
     }
     
    
@@ -56,6 +65,7 @@ public class GameManager : MonoBehaviour
         _pointMfDoom = FindObjectOfType<SpawnPointForMfDoom>();
         _player = Instantiate(_player.gameObject, _pointMfDoom.transform).GetComponent<Player>();
         _uiController.ChangePanel(Panel.Game);
+        MusicStarting?.Invoke();
 
       
        
@@ -73,15 +83,18 @@ public class GameManager : MonoBehaviour
         _level.gameObject.SetActive(false);
         
         ClearScene();
+        _interstitialAdExample.ShowAd();
         
+        QuietMusic?.Invoke();
     }
 
     public void Restart()
     {
         _level.gameObject.SetActive(true);
         _player.gameObject.SetActive(true);
-        _uiController.ChangePanel(Panel.Game);
         
+        _uiController.ChangePanel(Panel.Game);
+        RestartVolume?.Invoke();
     }
 
     private void ClearScene()

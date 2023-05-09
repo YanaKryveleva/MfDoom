@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CerealBox : MonoBehaviour
 {
-    private float speed = 0.002f;
+    [SerializeField] private float speed = 0.2f;
     private void Update()
     { 
         transform.Translate(Vector2.left * speed);

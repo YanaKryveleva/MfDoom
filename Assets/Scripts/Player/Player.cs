@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private int countClick;
     private bool isCanJump = true;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
+
+    private Vector2 _StartPointMfDoom;
+
+   
    // public int cerealBox = 0;
 
     public float CurrentScore
@@ -47,14 +53,22 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
+        _StartPointMfDoom = transform.position;
+
     }
-    
+
+    private void Start()
+    {
+        _audioSource.Play();
+       
+    }
 
     private void Update()
     {
        CurrentScore += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isCanJump)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isCanJump)
         {
            
             switch (countClick)
@@ -104,8 +118,10 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out CerealBox cereal))
         {
+            _audioSource.PlayOneShot(_audioClip);
             cerealBox++;
             cereal.gameObject.SetActive(false);
+            
         }
 
     }
@@ -115,7 +131,8 @@ public class Player : MonoBehaviour
         health = 1;
         CurrentScore = 0;
         cerealBox = 0;
-        
+        transform.position = _StartPointMfDoom;
+
     }
 
     private void ClickCounter()
@@ -139,6 +156,8 @@ public class Player : MonoBehaviour
         FinishScore = Mathf.RoundToInt(CurrentScore);
         GameManager.Instance.Death();
         Debug.Log("Game Over:((");
+        
+        
        // Time.timeScale = 0; //игра остнавливается
     }
 }
